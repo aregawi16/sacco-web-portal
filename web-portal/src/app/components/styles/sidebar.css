@@ -1,0 +1,67 @@
+.sidebar {
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    width: 260px;
+    padding: 10px;
+  }
+  
+  .sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .sidebar .nav-link .icon {
+    margin-right: 10px;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #e2e2e2;
+  }
+  .nav-profile .nav-link {
+    height: auto;
+    line-height: 1;
+    border-top: 0;
+    padding: 1.25rem 0;
+  }
+  
+  .nav-profile .nav-link .nav-profile-image {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .nav-profile .nav-link .nav-profile-image img {
+    width: 44px;
+    height: 44px;
+    border-radius: 100%;
+  }
+  
+  .nav-profile .nav-link .nav-profile-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
+  
+  .nav-profile .nav-link .nav-profile-text.rtl {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+  
+  .nav-profile .nav-link .nav-profile-badge {
+    font-size: 1.125rem;
+    margin-left: auto;
+  }
+  
+  .nav-profile .nav-link .nav-profile-badge.rtl {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .content-wrapper {
+    flex: 1;
+    /* Add any other styles you need for the content */
+  }
+  .main-container {
+    display: flex;
+  }
