@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { ContactService } from '../../../services/contact.service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { ContactService } from '../../../services/contact.service';
 
 const AdminContactPage = () => {
   const [contactData, setContactData] = React.useState({
