@@ -98,7 +98,7 @@ const AddAboutPage = () => {
 
         >
           {({ handleSubmit, values, handleChange,errors }) => (
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Card.Body>
                 <Form.Group controlId="aboutType">
                   <Form.Label>About Type</Form.Label>

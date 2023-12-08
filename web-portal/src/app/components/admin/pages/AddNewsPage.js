@@ -1,98 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Table, Button } from 'react-bootstrap';
-import { BsPencilSquare, BsTrashFill, BsPlus } from 'react-icons/bs';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { NewsService } from '../../../services/news.service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackward, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { ContactService } from '../../services/contact.service';
 
-const ContactType = {
-  0: 'General',
-  1: 'Vision',
-  2: 'Mission',
-  3: 'Value',
-  4: 'Goal',
-  5: 'Strategy',
-};
-
-const AdminContactListPage = () => {
-  const [contactData, setContactData] = useState([]);
-  const contactService = new ContactService();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchContactData();
-  }, []);
-
-  const fetchContactData = async () => {
-    try {
-      const response = await contactService.getContacts();
-      setContactData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+const AddNewsPage = () => {
+  const initialValues = {
+    title: '',
+    description: '',
+    image: null,
   };
 
-  const handleEdit = (contact) => {
-    navigate(`/admin/add-contact/${contact.contactId}`);
-  };
+  const validationSchema = Yup.object({
+    title: Yup.string().required('Title is required'),
+    description: Yup.string().required('Description is required'),
+    image: Yup.mixed().required('Image is required'),
+  });
+  const navigate  = useNavigate();
+  const newsService = new NewsService();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-  const handleDelete = async (contactId) => {
-    try {
-      await contactService.deleteContact(contactId);
-      setContactData(contactData.filter((item) => item.contactId !== contactId));
-    } catch (error) {
-      console.log(error);
-    }
+  const handleBack = ()=>{
+    navigate('/admin/news');
   };
-
-  const handleAddNewContact = () => {
-    navigate('/admin/add-contact');
-  };
-
+  const onSubmit = async (values, { resetForm }) => {
+    const formData = new FormData();
+    formData.append('title', values.title);
+    formData.append('description', values.description);
+    formData.append('image', values.image);
+    await newsService.addNews(formData)
+     .then(response=>{
+       // setNews(response.data);
+       resetForm();
+   
+     })
+     .catch(err=>{
+      console.log(err);
+     })
+   };
+ 
   return (
     <Container>
-      <h1 className="text-center mb-5">Contact List</h1>
-      <Button variant="primary" onClick={handleAddNewContact}>
-        <BsPlus size={20} /> Add New
-      </Button>
-      <Table striped bordered hover className="mt-3">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contactData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.full_name}</td>
-              <td>{item.email}</td>
-              <td>{item.subject}</td>
-              <td>{item.message}</td>
-              <td>
-                <Button
-                  variant="link"
-                  className="text-primary"
-                  onClick={() => handleEdit(item)}
-                >
-                  <BsPencilSquare size={20} />
-                </Button>
-                <Button
-                  variant="link"
-                  className="text-danger"
-                  onClick={() => handleDelete(item.contactId)}
-                >
-                  <BsTrashFill size={20} />
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <Row>
+        <Card>
+          <Card.Header>
+          <h1>Add News</h1>
+          </Card.Header>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            {({ setFieldValue }) => (
+              <Form>
+                <Card.Body>
+                <div className="mb-3">
+                  <label htmlFor="title" className="form-label">Title</label>
+                  <Field type="text" id="title" name="title" className="form-control" />
+                  <ErrorMessage name="title" component="div" className="text-danger" />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="description" className="form-label">Description</label>
+                  <Field as="textarea" id="description" name="description" className="form-control" rows={4} />
+                  <ErrorMessage name="description" component="div" className="text-danger" />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="image" className="form-label">Image</label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    className="form-control"
+                    onChange={(event) => {
+                      setFieldValue("image", event.currentTarget.files[0]);
+                    }}
+                  />
+                  <ErrorMessage name="image" component="div" className="text-danger" />
+                </div>
+                </Card.Body>
+                <Card.Footer className='d-flex justify-content-between'>
+            <Button variant="danger" onClick={handleBack}>
+              <FontAwesomeIcon icon={faBackward} /> Back
+            </Button>
+            <Button variant="primary" type="submit" >
+              <FontAwesomeIcon icon={faSave} /> Save
+            </Button>
+           
+            </Card.Footer>  
+                        </Form>
+            )}
+          </Formik>
+        </Card>
+      </Row>
     </Container>
   );
 };
 
-export default AdminContactListPage;
+export default AddNewsPage;
