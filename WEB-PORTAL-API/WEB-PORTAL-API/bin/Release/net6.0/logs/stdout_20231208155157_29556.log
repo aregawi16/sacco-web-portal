@@ -1,0 +1,22 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: F:\UM\Website\WEB-PORTAL-API\WEB-PORTAL-API\bin\Release\net6.0\
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (118ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [n].[NewsId], [n].[CreatedBy], [n].[DateCreated], [n].[DateModified], [n].[Description], [n].[Image], [n].[ModifiedBy], [n].[Title]
+      FROM [News] AS [n]
+      WHERE [n].[NewsId] = @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (23ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      DELETE FROM [News]
+      OUTPUT 1
+      WHERE [NewsId] = @p0;
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
