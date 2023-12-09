@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class NewsService {
   constructor() {
-    this.httpNews = "http://localhost:6767/api/news";
+    this.httpNews = process.env.REACT_APP_API_BACKEND_URL+"news";
   }
 
   async getNews() {

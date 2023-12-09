@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class AboutService {
   constructor() {
-    this.httpAbout = "http://localhost:6767/api/About";
+    this.httpAbout = process.env.REACT_APP_API_BACKEND_URL+"About";
   }
 
   async getAbout() {

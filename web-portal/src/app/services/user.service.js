@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class UserService {
   constructor() {
-    this.httpUser = "http://localhost:6767/api/User";
+    this.httpUser = process.env.REACT_APP_API_BACKEND_URL+"User";
   }
 
   async getUsers() {

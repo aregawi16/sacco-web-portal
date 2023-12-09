@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class ContactService {
   constructor() {
-    this.httpContact = "http://localhost:6767/api/Contact";
+    this.httpContact = process.env.REACT_APP_API_BACKEND_URL+"Contact";
   }
 
   async getContact() {
