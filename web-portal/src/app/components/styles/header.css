@@ -1,7 +1,10 @@
 /* src/components/common/Header.css */
 
 /* src/components/common/Header.css */
-
+#header
+{
+margin-top: 40px;
+}
 .logo-left {
     width: 85%;
     height: auto;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { faCog, faComment, faDesktop, faImage, faTh, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button,Accordion } from 'react-bootstrap';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Carousel } from 'react-bootstrap';
@@ -112,6 +112,8 @@ const HomePage = () => {
   
   const ImageSlider = () => {
     return (
+      <div className='row'>
+        <div className='col-9'>
 <Carousel activeIndex={index} onSelect={handleSelect} interval={3000}>
         <Carousel.Item>
           <img src={slider1} alt="Image 1" className="rounded" />
@@ -148,6 +150,11 @@ const HomePage = () => {
         </Carousel.Item>
 
       </Carousel>
+      </div>
+      <div className='col-3'>
+      
+      </div>
+      </div>
     );
   };
   return (

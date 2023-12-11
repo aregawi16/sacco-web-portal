@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header >
+    <header id='header' >
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
         <a className="navbar-brand" href="/">
@@ -35,27 +35,11 @@ const Header = () => {
     </div>
   </div>
 </a>
-<button className="navbar-toggler" type="button" onClick={toggleSearch}>
+{/* <button className="navbar-toggler" type="button" onClick={toggleSearch}>
       <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className={`collapse navbar-collapse ${isSearchVisible ? 'show' : ''}`}>
-          <ul className="navbar-nav ml-auto">
-         
-              <li className="nav-item">
-                <a className="nav-link" href="/">
-               <hp>   <FontAwesomeIcon icon={faPhone} /> +251938778400</hp>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">
-               <p>   <FontAwesomeIcon icon={faEnvelope} /> info@mgsolution.com</p>
-                </a>
-              </li>
-              
-       </ul>
-       
-        </div>
-        </div>
+    </button> */}
+
+</div>
       
       </nav>
       <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#207daf' }}>
